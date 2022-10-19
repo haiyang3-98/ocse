@@ -19,11 +19,13 @@
 
 //#include <linux/types.h>
 #include <misc/ocxl.h>
-#include <libocxl.h>
+#include "libocxl.h"
 #include <stdbool.h>
 #include <stddef.h>  // for size_t
 #include <stdint.h>
 #include <stdio.h>  // for off_t
+#include <pthread.h>
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -67,6 +67,8 @@
 #define DSISR 0x4000000040000000L
 #define ERR_BUFF_MAX_COPY_SIZE 4096
 
+static ocxl_wait_event *ocxl_wait_list = NULL;
+
 static int _delay_1ms()
 {
 	struct timespec ts;

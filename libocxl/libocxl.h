@@ -23,6 +23,8 @@
 #include <stddef.h>  // for size_t
 #include <stdint.h>
 #include <stdio.h>  // for off_t
+#include <pthread.h>
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -144,8 +146,6 @@ typedef struct ocxl_wait_event {
   int received; // set by _handle_wake_host_thread - cleared by ocxl_wait upon receipt of the wake host thread
   struct ocxl_wait_event *_next;
 } ocxl_wait_event;
-
-  ocxl_wait_event *ocxl_wait_list = NULL;
 
 #define OCXL_ATTACH_FLAGS_NONE (0)
 

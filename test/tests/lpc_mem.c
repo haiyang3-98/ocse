@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
     
     // attach device
     printf("Attaching device ...\n");
-    rc = ocxl_afu_attach(mafu_h);
+    rc = ocxl_afu_attach(mafu_h,0);
     if(rc != 0) {
 	perror("cxl_afu_attach:"MDEVICE);
 	return rc;
@@ -126,14 +126,18 @@ int main(int argc, char *argv[])
 
     // mapping device
     printf("Attempt mmio mapping afu registers\n");
-    if (ocxl_mmio_map(mafu_h, OCXL_MMIO_LITTLE_ENDIAN) != 0) {
+    void* addr;
+    if (ocxl_mmio_map(mafu_h, OCXL_MMIO_LITTLE_ENDIAN,&addr) != 0) {
 	printf("FAILED: ocxl_mmio_map\n");
 	goto done;
     }
+    printf("mmio addr %p",addr);
+    /*
     if(ocxl_global_mmio_map(mafu_h, OCXL_MMIO_LITTLE_ENDIAN) != 0) {
 	printf("FAILED: ocxl_global_mmio_map\n");
 	goto done;
     }
+    */
 
     //printf("Calling ocxl_get_cr_device and vendor\n");
     //ocxl_get_cr_device(mafu_h, 0, &cr_device);
